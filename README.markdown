@@ -1,8 +1,9 @@
 # Org-Lass - LASS styles to display HTML as Org-mode file
 
-## Usage
+## Demo
 
-## Installation
+[https://egao1980.github.io/org-lass/]
+
 
 ## Author
 
