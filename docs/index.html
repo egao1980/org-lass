@@ -1,0 +1,97 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ORG mode CSS with LASS</title>
+  <meta name="description" content="Classless reset that renders HTML as if it is an Org mode file">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+  <link rel="stylesheet" href="org.css">
+</head>
+<body>
+  <main>
+    <div id="top" class="page" role="document">
+      <header role="banner">
+        Rendering HTML Org-mode style with no classes and power of Common Lisp
+      </header>
+      <section>
+        <header>
+          <h1>Idea</h1>
+        </header>
+        <p>This project is inspired by amazing <a href="https://mrcoles.com/demo/markdown-css/">Markdown.css</a> work by Peter Coles.
+        </p>
+      </section>
+
+      <section>
+        <header>
+          <h1>Demo</h1>
+        </header>
+        <p>Please check the mandatory HTML5 features demo <a href="./demo.html">Demo page</a>.</p>
+      </section>
+      
+      <section>
+        <header>
+          <h1>Tools</h1>
+        </header>
+        <article>
+          <header>
+            <h2>Emacs</h2>
+          </header>
+          <p>Almighty editor to <s>rule them all</s> edit CSS, LASS, Common Lisp and bits of HTML.</p>
+          <p>I highly recommend <a href="https://portacle.github.io/">Portacle</a> as a distribution to try out Common Lips development in a hassle free manner. 
+          </p>
+        </article>
+
+        <article>
+          <header>
+            <h2>LASS</h2>
+          </header>
+          <p>CSS is being generated using <em>Shinmera's</em> <a href="https://shinmera.github.io/LASS/">LASS</a> CSS generation library for Common Lisp.
+          </p>
+          <p>LASS:</p>
+          <pre>
+(article
+  ((:or p blockquote)
+    :margin 0 :padding 0
+   (a
+     :color black)
+   ((:and a :hover)
+      :color darkred)))</pre>
+          <p>Generated CSS:</p>
+          <pre>
+article p, article blockquote{
+    margin: 0;
+    padding: 0;
+}
+
+article p a, article blockquote a{
+    color: black;
+}
+
+article p a:hover, article blockquote a:hover{
+    color: darkred;
+}</pre>
+          <p>More examples are available at the <code>LASS</code> website.
+        </article>
+        <article>
+          <header>
+            <h2>CLASS as a convenient extension to LASS</h2>
+          </header>
+          <p>I've created a small extension to <code>LASS</code> - <a href="https://github.com/egao1980/lassie">CLASSIE</a> that can handle arithmetic operations and goes around some rough edges of <code>LASS</code>.
+          </p>
+          <p>LASS:</p>
+          <pre>  (h1
+   :color #(orange)
+   :font-size (+ 4px #(font-size)))</pre>
+          <p>CSS:</p>
+          <pre>
+h1{
+    color: #cb4b16;
+    font-size: 18.00px;
+}</pre>
+          
+        </article>
+      </section>        
+    </div>
+  </main>
+</body>

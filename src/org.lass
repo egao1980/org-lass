@@ -1,0 +1,582 @@
+(:let ((font-size 14px)
+       (line-height 20px)
+       (color "#333")
+       (link-color "#265c80")
+       (two-space 17px)
+       (four-space 34px)
+       (four-space-css3 "4ch") 
+       (two-space-css3 "2ch") 
+       (ul-tick "'+'")
+       (bold-char "'*'")
+       (verbatim-char "'='")
+       (italic-char "'/'")
+       (strike-through-char "'+'")
+       (underline-char "'_'")
+       (code-char "'~'")
+       (latex-char "'$'")
+       (subscript-char "'_'")
+       (superscript-char "'^'")
+       (inline-block-start "'{'")
+       (inline-block-end "'}'")
+       (input-block-start "'<<'")
+       (input-block-end "'>>'")
+       (time-block-start "'['")
+       (time-block-end "']'")
+       (monospaced "consolas,monaco,courier,\"courier new\",monospace")
+       ;; colors from Solarized
+
+       (base03       "#002b36")
+       (base02       "#073642")
+       (base01       "#586e75")
+       (base00       "#657b83")
+       (base0        "#839496")
+       (base1        "#93a1a1")
+       (base2        "#eee8d5")
+       (base3        "#fdf6e3")
+       (yellow       "#b58900")
+       (orange       "#cb4b16")
+       (red          "#dc322f")
+       (magenta      "#d33682")
+       (violet       "#6c71c4")
+       (blue         "#268bd2")
+       (cyan         "#2aa198")
+       (green        "#859900")
+       (yellow-1bg   "#f8e8c6")
+       (yellow-1fg   "#876d26")
+       (yellow-2bg   "#f1d49b")
+       (yellow-2fg   "#766634")
+       (yellow-d     "#866300")
+       (yellow-l     "#e1af4b")
+       (orange-1bg   "#fedfc5")
+       (orange-1fg   "#974727")
+       (orange-2bg   "#ffbd99")
+       (orange-2fg   "#854a33")
+       (orange-d     "#992700")
+       (orange-l     "#fb7640")
+       (red-1bg      "#ffdec8")
+       (red-1fg      "#a33c35")
+       (red-2bg      "#ffb9a1")
+       (red-2fg      "#8e433d")
+       (red-d        "#a7020a")
+       (red-l        "#ff6849")
+       (magenta-1bg  "#fdded7")
+       (magenta-1fg  "#9a3f6c")
+       (magenta-2bg  "#fdbac6")
+       (magenta-2fg  "#854568")
+       (magenta-d    "#a00559")
+       (magenta-l    "#ff699e")
+       (violet-1bg   "#ebe4e2")
+       (violet-1fg   "#4f5e99")
+       (violet-2bg   "#d1c9e3")
+       (violet-2fg   "#475a8b")
+       (violet-d     "#243e9b")
+       (violet-l     "#8d85e7")
+       (blue-1bg     "#e7e8e4")
+       (blue-1fg     "#1e6fa2")
+       (blue-2bg     "#c3d5e9")
+       (blue-2fg     "#246792")
+       (blue-d       "#0061a8")
+       (blue-l       "#74adf5")
+       (cyan-1bg     "#e4ecda")
+       (cyan-1fg     "#207e7b")
+       (cyan-2bg     "#bedfcf")
+       (cyan-2fg     "#247374")
+       (cyan-d       "#007d76")
+       (cyan-l       "#6ccec0")
+       (green-1bg    "#efeac7")
+       (green-1fg    "#657827")
+       (green-2bg    "#dbdb9c")
+       (green-2fg    "#5b6e35")
+       (green-d      "#5b7300")
+       (green-l      "#b3c34d")
+       )
+  (*
+   :word-wrap break-word)
+
+  (html
+   :color #(base00)
+   :background #(base3))
+  
+  (body
+   :margin 0 auto
+   :max-width 23cm
+   :paddding 1em
+   )
+
+  ((:or "::selection" "::-moz-selection")
+   :background #(base2))
+
+  ((:or h1 h2 h3 h4 h5 h6 h7 h8 h9 pre code blockquote em strong code table)
+   :font-size #(font-size)
+   :line-height #(line-height)
+   :font-weight normal
+   :font-style normal
+   :font-family #(monospaced)
+   )
+
+  ((:or h1 p ul ol pre blockquote) 
+   :margin-top #(line-height)
+   :margin-bottom #(line-height))
+
+  ((:or blockquote pre figure fieldset)
+   :background #(base2))
+
+
+  ((:and header (:= role banner))
+   :font-weight bold
+   :font-size (+ 4px #(font-size)))
+
+  ((:and header (:= role banner) :before)
+   :content "#+TITLE: "
+   :display inline
+   :font-size #(font-size)
+   :font-weight normal
+   :font-family #(monospaced))
+
+ 
+  ((:or h1 h2 h3 h4 h5 h6 h7 h8 h9) 
+   :position relative
+   :font-weight 700
+   :margin-bottom #(line-height))
+
+  ((:and (:or h1 h2 h3 h4 h5 h6 h7 h8 h9) :before)
+   :display inline)
+
+
+  (((:or article section) > *)
+   :margin-left #(two-space)
+   :margin-left #(two-space-css3))
+
+  (((:or article section) > header)
+   :margin-left 0px)
+
+  ((:or h1 h2 h3 h4 h5 h6 h7 h8 h9 article section)
+   :margin-left 0px)
+  
+  ((:and h1 :before)
+   :content "* ")
+  
+  (h1
+   :color #(orange)
+   :font-size (+ 4px #(font-size)))
+
+  ((:and h2 :before)
+   :content "** ")
+
+  (h2
+   :color #(green)
+   :font-size (+ 3px #(font-size)))
+  
+  ((:and h3 :before)
+   :content "*** ")
+
+  (h3
+   :color #(blue)
+   :font-size (+ 2px #(font-size)))
+
+  ((:and h4 :before)
+   :content "**** ")
+
+  (h4
+   :color #(yellow)
+   :font-size (+ 1px #(font-size)))
+
+  ((:and h5 :before)
+   :content "***** ")
+
+  (h5
+   :color #(cyan))
+
+  ((:and h6 :before)
+   :content "****** ")
+
+  (h6
+   :color #(green))
+
+  ((:and h7 :before)
+   :content "******* ")
+
+  (h7
+   :color #(red))
+
+  ((:and h8 :before)
+   :content "******** ")
+
+  (h8
+   :color #(blue))
+
+  ((:and h9 :before)
+   :content "********* ")
+
+  (li 
+   :position relative
+   :display block
+   :padding-left #(two-space)
+   :padding-left #(two-space-css3))
+
+  ((:and li :after) 
+        :position absolute
+        :top 0
+        :left 0)
+
+  ((ul > (:and li :after))
+   :content #(ul-tick))
+
+  (ol
+   :counter-reset ol)
+
+  ((ol > (:and li :after))
+   :content (values "counter(ol)" "'.'")
+   :counter-increment ol)
+
+  (pre
+   :color #(base1)
+   :position relative
+   :margin-left #(two-space)
+   :margin-left #(two-space-css3)
+   :padding (values #(line-height) 0 #(line-height))
+   )
+
+  ((:and pre :before)
+   :content "#+BEGIN_EXAMPLE"
+   :position absolute
+   :font-family #(monospaced)
+   :left 0
+   :top 0)
+
+  ((:and pre :after)
+   :content "#+END_EXAMPLE"
+   :position absolute
+   :font-family #(monospaced)
+   :left 0
+   :bottom 0)
+
+  (blockquote
+   :position relative
+   :margin-left #(two-space)
+   :margin-left #(two-space-css3)
+   :padding (values #(line-height) 0 #(line-height))
+   )
+
+  ((:and blockquote :before)
+   :content "#+BEGIN_QUOTE"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :top 0)
+
+  ((:and blockquote :after)
+   :content "#+END_QUOTE"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :bottom 0)
+
+  (fieldset
+   :position relative
+   :margin-left #(two-space)
+   :margin-left #(two-space-css3)
+   :padding-top #(line-height)
+   :padding-bottom #(line-height)
+   :border none
+   )
+
+  ((:and fieldset :before)
+   :content "#+BEGIN_FORM"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :top #(line-height))
+
+  ((:and fieldset :after)
+   :content "#+END_FORM"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :bottom 0)
+
+  ((fieldset > legend)
+   :font-family #(monospaced)
+   :position absolute
+   :top 0
+   :left 0)
+
+  ((:and (fieldset > legend) :before)
+   :font-family #(monospaced)
+   :content "'#+NAME: {'"
+   :display inline)
+
+  ((:and (fieldset > legend) :after)
+   :content "'}'"
+   :font-family #(monospaced)
+   :display inline)
+
+  ((:and (:or strong em b)
+         (:or :before :after))
+   :content #(bold-char)
+   :display inline)
+
+  ((:and i
+         (:or :before :after))
+   :content #(italic-char)
+   :display inline)
+
+  ((:and u
+         (:or :before :after))
+   :content #(underline-char)
+   :display inline)
+
+  ((:and s
+         (:or :before :after))
+   :content #(strike-through-char)
+   :display inline)
+
+  ((:and del :before)
+   :content (values #(inline-block-start) #(strike-through-char))
+   :display inline
+   )
+
+  ((:and del :after)
+   :content (values #(strike-through-char) #(inline-block-end))
+   :display inline
+   )
+
+  ((:and ins :before)
+   :content (values #(inline-block-start) #(underline-char))
+   :display inline
+   )
+
+  ((:and ins :after)
+   :content (values #(underline-char) #(inline-block-end))
+   :display inline
+   )
+
+  (sup
+   :vertical-align baseline
+   :font-size inherit)
+
+  ((:and sup :before)
+   :content (values #(superscript-char) #(inline-block-start))
+   :display inline
+   )
+
+
+  ((:and sup :after)
+   :content #(inline-block-end)
+   :display inline
+   )
+
+ ((:and cite :before)
+   :content (values "'cite:'" #(inline-block-start))
+   :display inline
+   )
+
+
+  ((:and cite :after)
+   :content #(inline-block-end)
+   :display inline
+   )
+
+
+  (sub
+   :vertical-align baseline
+   :font-size inherit)
+
+  ((:and sub :before)
+   :content (values #(subscript-char) #(inline-block-start))
+   :display inline
+   )
+
+  ((:and sub :after)
+   :content #(inline-block-end)
+   :display inline
+   )
+
+  (code
+   :color #(base1)
+   )
+  
+  ((:and code (:or :before :after))
+   :content #(code-char)
+   :display inline
+   )
+
+  ((:and samp (:or :before :after))
+   :content #(verbatim-char)
+   :display inline
+   )
+
+  (var
+   :color #(yellow))
+
+  ((:and var :before)
+   :content (values #(inline-block-start) #(latex-char))
+   :display inline
+   )
+
+  ((:and var :after)
+   :content (values #(latex-char) #(inline-block-end))
+   :display inline
+   )
+
+   (time :color #(violet))
+
+   ((:and time :before)
+   :content #(time-block-start)
+   :display inline
+   )
+
+  ((:and time :after)
+   :content #(time-block-end)
+   :display inline
+   )
+
+  (label[for]
+   :color #(magenta))
+
+  ((:and label[for] :before)
+   :content #(input-block-start)
+   :display inline-block
+   )
+
+  ((:and label[for] :after)
+   :content #(input-block-end)
+   :display inline
+   )
+
+  ((:and input (:= type range))
+   :vertical-align middle)
+
+
+  (a
+   :text-decoration none
+   :color #(yellow)
+   :font-weight bold
+   )
+
+  ((:and a :hover)
+   :text-decoration none
+   :color #(violet)
+   )
+
+  ((:and a :hover :visited)
+   :text-decoration none
+   :color #(violet)
+   )
+
+  ((:and a :visited ":not(:hover)")
+   :text-decoration none
+   :color #(orange)
+   :font-weight normal
+   )
+
+  ((:and a :before)
+   :content "'[['"
+   :display inline
+   :color #(base0))
+
+  ((:and a :after )
+   :content "']]'"
+   :display inline
+   :color #(base0))
+
+  ((:and a[href] :after )
+   :content (values "']['" "attr(href)" "']]'")
+   :display inline
+   :color #(base0))
+
+  (table
+   :color #(green)
+   :position relative
+   :padding-top #(line-height)
+   :padding-bottom #(line-height)
+   :margin-top (* 3 #(line-height))
+   :margin-bottom (* 2 #(line-height))
+   :margin-left #(two-space)
+   :margin-left #(two-space-css3))
+  
+  ((:and table :before)
+   :content "#+BEGIN_EXPORT"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :top (- 0px #(line-height)))
+
+  ((:and table :after)
+   :content "#+END_EXPORT"
+   :font-family #(monospaced)
+   :position absolute
+   :left 0
+   :bottom (- 0px #(line-height)))
+
+  ((table > caption)
+   :font-family #(monospaced)
+   :position absolute
+   :top (- 0px (* 2 #(line-height)))
+   :left 0)
+
+  ((:and (table > caption) :before)
+   :font-family #(monospaced)
+   :content "'#+CAPTION: {'"
+   :display inline)
+
+  ((:and (table > caption) :after)
+   :font-family #(monospaced)
+   :content "'}'"
+   :display inline)
+
+  ((thead > tr)
+   :border-left (values 2px solid)
+   :border-bottom (values 2px dashed))
+  
+  ((thead > tr > th)
+   :background #(base2)
+   :font-weight bold
+   :border-right (values 2px solid)
+   )
+
+  ((tbody > tr)
+   :border-left (values 2px solid))
+
+  
+  ((tbody > tr > td)
+   :border-right (values 2px solid)
+   )
+
+  ((tfoot > tr)
+   :border-left 2px solid
+   :border-top (values 2px dashed))
+
+  
+  ((tfoot > tr > th)
+   :background #(base2)
+   :font-weight bold
+   :border-right (values 2px solid) 
+   )
+
+
+
+  (figure
+   :position relative
+   :padding-top #(line-height)
+   :padding-bottom #(line-height)
+   :margin-top (* 2 #(line-height))
+   :margin-bottom (* 2 #(line-height)))  
+
+  ((figure > figcaption)
+   :font-family #(monospaced)
+   :position absolute
+   :top (- 0px (* 1 #(line-height)))
+   :left 0)
+
+  
+  ((:and (figure > figcaption) :before)
+   :font-family #(monospaced)
+   :content "'#+CAPTION: {'"
+   :display inline)
+
+  ((:and (figure > figcaption) :after)
+   :font-family #(monospaced)
+   :content "'}'"
+   :display inline)
+  )
